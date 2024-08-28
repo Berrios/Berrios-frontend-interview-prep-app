@@ -1,33 +1,42 @@
 import React, { useState } from 'react';
 import { useChallengeContext } from '../contexts/ChallengeContext';
-import ChallengeDescription from '../components/ChallengeDescription';
-import CodeEditor from '../components/CodeEditor';
-import OutputPanel from '../components/OutputPanel';
-import Timer from '../components/Timer';
-import NavigationButtons from '../components/NavigationButtons';
-import { runTestCases } from '../utils/testRunner';
-import { executeCode } from '../utils/codeExecutor';
-import '../styles/ChallengeApp.css';
+import ChallengeDescription from '../components/ChallengeDescription/ChallengeDescription';
+import CodeEditorWindow from '../components/CodeEditorWindow';
+import Console from '../components/Console';
+import Timer from '../components/Timer/Timer';
+import NavigationButtons from '../components/NavigationButtons/NavigationButtons';
+import './ChallengeApp.css';
 
 function ChallengeApp() {
   const { currentChallenge } = useChallengeContext();
-  const [code, setCode] = useState('');
-  const [output, setOutput] = useState('');
+  const [code, setCode] = useState(currentChallenge.initialCode || '');
   const [consoleLogs, setConsoleLogs] = useState([]);
 
+  const handleCodeChange = (value) => {
+    setCode(value);
+  };
+
   const handleRunCode = () => {
-    const { result, logs } = executeCode(code);
-    setOutput(result);
+    const logs = [];
+    const originalConsoleLog = console.log;
+    console.log = (...args) => {
+      logs.push(args.join(' '));
+    };
+
+    try {
+      // eslint-disable-next-line no-new-func
+      new Function(code)();
+    } catch (error) {
+      logs.push(`Error: ${error.message}`);
+    }
+
+    console.log = originalConsoleLog;
     setConsoleLogs(logs);
   };
 
-  const handleSubmitCode = () => {
-    const testResults = runTestCases(currentChallenge.testCases, code);
-    setOutput(JSON.stringify(testResults, null, 2));
-  };
-
   const handleResetCode = () => {
-    setCode(currentChallenge.initialCode);
+    setCode(currentChallenge.initialCode || '');
+    setConsoleLogs([]);
   };
 
   return (
@@ -35,15 +44,18 @@ function ChallengeApp() {
       <Timer />
       <div className="challenge-content">
         <ChallengeDescription challenge={currentChallenge} />
-        <div className="right-panel">
-          <CodeEditor
+        <div className="editor-console-container">
+          <CodeEditorWindow
             code={code}
-            setCode={setCode}
-            onRun={handleRunCode}
-            onSubmit={handleSubmitCode}
-            onReset={handleResetCode}
+            onChange={handleCodeChange}
+            language="javascript"
+            theme="vs-dark"
           />
-          <OutputPanel output={output} consoleLogs={consoleLogs} />
+          <div className="button-container">
+            <button onClick={handleRunCode}>Run Code</button>
+            <button onClick={handleResetCode}>Reset Code</button>
+          </div>
+          <Console logs={consoleLogs} />
         </div>
       </div>
       <NavigationButtons />

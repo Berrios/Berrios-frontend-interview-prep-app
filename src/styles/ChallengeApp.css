@@ -1,27 +1,43 @@
 .challenge-app {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    padding-top: 60px; /* Space for the timer */
-  }
-  
-  .challenge-content {
-    display: flex;
-    flex: 1;
-  }
-  
-  .right-panel {
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-  }
-  
-  @media (max-width: 768px) {
-    .challenge-content {
-      flex-direction: column;
-    }
-  
-    .right-panel {
-      width: 100%;
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.challenge-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  flex: 1;
+  overflow: auto;
+}
+
+.challenge-description {
+  width: 40%;
+  overflow-y: auto;
+}
+
+.editor-console-container {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.button-container button {
+  margin-left: 10px;
+}
+
+.console {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  height: 150px;
+  overflow-y: auto;
+  background-color: #f0f0f0;
+}

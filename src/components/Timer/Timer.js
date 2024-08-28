@@ -1,34 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/Timer.css';
 
 function Timer() {
-  const [time, setTime] = useState(15 * 60); // 15 minutes in seconds
-  const [isRunning, setIsRunning] = useState(false);
+  const [time, setTime] = useState(900); // 15 minutes in seconds
 
   useEffect(() => {
-    let interval;
-    if (isRunning && time > 0) {
-      interval = setInterval(() => setTime(time - 1), 1000);
-    } else if (time === 0) {
-      alert("Time's up!");
-    }
-    return () => clearInterval(interval);
-  }, [isRunning, time]);
+    const timer = setInterval(() => {
+      setTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
+    }, 1000);
 
-  const toggleTimer = () => setIsRunning(!isRunning);
+    return () => clearInterval(timer);
+  }, []);
 
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
 
   return (
     <div className="timer">
-      <span>{formatTime(time)}</span>
-      <button onClick={toggleTimer}>
-        {isRunning ? '⏸' : '▶️'}
-      </button>
+      {minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
     </div>
   );
 }

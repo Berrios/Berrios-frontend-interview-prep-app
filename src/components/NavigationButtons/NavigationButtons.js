@@ -1,29 +1,19 @@
 import React from 'react';
-import { useChallengeContext } from '../contexts/ChallengeContext';
-import '../styles/NavigationButtons.css';
+import { useChallengeContext } from '../../contexts/ChallengeContext';
+import './NavigationButtons.css';
 
 function NavigationButtons() {
-  const { currentChallenge, setCurrentChallenge, challenges } = useChallengeContext();
+  const { currentChallenge, prevChallenge, nextChallenge, challenges } = useChallengeContext();
 
   const currentIndex = challenges.findIndex(c => c.id === currentChallenge.id);
-
-  const handlePrevious = () => {
-    if (currentIndex > 0) {
-      setCurrentChallenge(challenges[currentIndex - 1]);
-    }
-  };
-
-  const handleNext = () => {
-    if (currentIndex < challenges.length - 1) {
-      setCurrentChallenge(challenges[currentIndex + 1]);
-    }
-  };
+  const isFirst = currentIndex === 0;
+  const isLast = currentIndex === challenges.length - 1;
 
   return (
     <div className="navigation-buttons">
-      <button onClick={handlePrevious} disabled={currentIndex === 0}>Previous</button>
-      <span>{currentChallenge.category}</span>
-      <button onClick={handleNext} disabled={currentIndex === challenges.length - 1}>Next</button>
+      {!isFirst && <button onClick={prevChallenge}>Previous</button>}
+      <span className="current-section">{currentChallenge.section}</span>
+      {!isLast && <button onClick={nextChallenge}>Next</button>}
     </div>
   );
 }

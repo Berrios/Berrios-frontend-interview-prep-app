@@ -1,5 +1,4 @@
 import React from 'react';
-import './Console.css';
 
 const Console = ({ logs }) => (
   <div className="console">

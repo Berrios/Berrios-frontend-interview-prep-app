@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/OutputPanel.css';
 
 function OutputPanel({ output, consoleLogs }) {
   return (
