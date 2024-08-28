@@ -1,0 +1,27 @@
+.challenge-app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding-top: 60px; /* Space for the timer */
+  }
+  
+  .challenge-content {
+    display: flex;
+    flex: 1;
+  }
+  
+  .right-panel {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+  }
+  
+  @media (max-width: 768px) {
+    .challenge-content {
+      flex-direction: column;
+    }
+  
+    .right-panel {
+      width: 100%;
+    }
+  }

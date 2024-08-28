@@ -1,0 +1,15 @@
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #f0f0f0;
+  }
+  
+  .navigation-buttons button {
+    padding: 5px 10px;
+  }
+  
+  .navigation-buttons span {
+    font-weight: bold;
+  }
