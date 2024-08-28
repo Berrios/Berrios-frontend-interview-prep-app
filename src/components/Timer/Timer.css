@@ -1,11 +1,38 @@
 .timer {
-  position: fixed;
-  top: 20px;
+  position: absolute;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1000;
-  background-color: white;
+  background-color: #333;
+  color: #fff;
   padding: 5px 10px;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-size: 1.2em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+
+.time-display {
+  margin-right: 10px;
+}
+
+.timer-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+}
+
+.timer-button:hover .icon {
+  fill: #ddd;
 }

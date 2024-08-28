@@ -1,30 +1,38 @@
 const challenges = [
-    {
-      id: 1,
-      name: "Reverse and Join",
-      section: "Arrays",
-      description: "Given an array of strings, reverse the order of the elements and join them into a single string with a space between each word.",
-      example: {
-        input: '["Hello", "World", "JavaScript"]',
-        output: '"JavaScript World Hello"'
-      },
-      methods: ["reverse()", "join()"],
-      initialCode: "function reverseAndJoin(arr) {\n  // Your code here\n}",
-      bigONotation: "O(n) where n is the number of elements in the array"
+  {
+    id: 1,
+    name: "Reverse and Join",
+    section: "Arrays",
+    description: "Given an array of strings, reverse the order of the elements and join them into a single string with a space between each word.",
+    example: {
+      input: '["Hello", "World", "JavaScript"]',
+      output: '"JavaScript World Hello"'
     },
-    {
-      id: 2,
-      name: "Filter and Map",
-      section: "Arrays",
-      description: "Given an array of numbers, filter out all even numbers, then square the remaining odd numbers.",
-      example: {
-        input: "[1, 2, 3, 4, 5, 6, 7, 8, 9]",
-        output: "[1, 9, 25, 49, 81]"
-      },
-      methods: ["filter()", "map()"],
-      initialCode: "function filterAndMap(arr) {\n  // Your code here\n}",
-      bigONotation: "O(n) where n is the number of elements in the array"
+    methods: ["reverse()", "join()"],
+    initialCode: "function reverseAndJoin(arr) {\n  // Your code here\n}",
+    bigONotation: "O(n) where n is the number of elements in the array",
+    testCases: [
+      { input: ["Hello", "World", "JavaScript"], output: "JavaScript World Hello" },
+      { input: ["a", "b", "c"], output: "c b a" },
+    ]
+  },
+  {
+    id: 2,
+    name: "Filter and Map",
+    section: "Arrays",
+    description: "Given an array of numbers, filter out all even numbers, then square the remaining odd numbers.",
+    example: {
+      input: "[1, 2, 3, 4, 5, 6, 7, 8, 9]",
+      output: "[1, 9, 25, 49, 81]"
     },
+    methods: ["filter()", "map()"],
+    initialCode: "function filterAndMap(arr) {\n  // Your code here\n}",
+    bigONotation: "O(n) where n is the number of elements in the array",
+    testCases: [
+      { input: [1, 2, 3, 4, 5, 6, 7, 8, 9], output: [1, 9, 25, 49, 81] },
+      { input: [2, 4, 6, 8], output: [] },
+    ]
+  },
     {
       id: 3,
       name: "Reduce to Object",

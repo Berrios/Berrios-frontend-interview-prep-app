@@ -19,7 +19,7 @@
     "react": "^18.2.0",
     "react-codemirror2": "^8.0.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "recharts": "^2.7.2",
     "string-width": "^5.1.2",
     "strip-ansi": "^7.0.1",

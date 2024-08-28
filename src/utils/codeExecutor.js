@@ -10,6 +10,7 @@ export function executeCode(userCode) {
     const result = userFunction(console);
     return { result, logs };
   } catch (error) {
-    return { result: null, logs: [...logs, error.toString()] };
+    // Handle the error appropriately
+    return { error: error.message, logs };
   }
 }

@@ -1,15 +1,18 @@
 import React from 'react';
+import CodeEditorWindow from '../CodeEditorWindow/CodeEditorWindow';
 import './TestCases.css';
 
-const TestCases = ({ testCases }) => (
-  <div className="test-cases">
-    {testCases.map((testCase, index) => (
-      <div key={index}>
-        <p>Input: {JSON.stringify(testCase.input)}</p>
-        <p>Expected: {JSON.stringify(testCase.expected)}</p>
-      </div>
-    ))}
-  </div>
-);
+function TestCases({ testCases, onChange }) {
+  return (
+    <div className="test-cases">
+      <CodeEditorWindow
+        code={testCases}
+        onChange={onChange}
+        language="javascript"
+        theme="vs-dark"
+      />
+    </div>
+  );
+}
 
 export default TestCases;
