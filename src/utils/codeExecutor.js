@@ -1,8 +1,9 @@
 export const executeCode = (code, input) => {
     try {
-      const userFunction = new Function('return ' + code)();
-      return userFunction(...input);
+        // eslint-disable-next-line no-new-func
+        const userFunction = new Function('console', code);
+        return userFunction(...input);
     } catch (error) {
-      return `Error: ${error.message}`;
+        return `Error: ${error.message}`;
     }
   };

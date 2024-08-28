@@ -17,7 +17,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "recharts": "^2.7.2"
+    "recharts": "^2.7.2",
+    "string-width-cjs": "^5.1.1",
+    "strip-ansi-cjs": "^8.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -30,6 +32,15 @@
       "react-app/jest"
     ]
   },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
+    }
+  ],
   "browserslist": {
     "production": [
       ">0.2%",

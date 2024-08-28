@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useChallengeContext } from '../contexts/ChallengeContext';
 import ChallengeDescription from '../components/ChallengeDescription';
 import CodeEditor from '../components/CodeEditor';
 import OutputPanel from '../components/OutputPanel';
 import Timer from '../components/Timer';
 import NavigationButtons from '../components/NavigationButtons';
+import { runTestCases } from '../utils/testRunner';
 import { executeCode } from '../utils/codeExecutor';
 import '../styles/ChallengeApp.css';
 
 function ChallengeApp() {
-  const { currentChallenge, setCurrentChallenge } = useChallengeContext();
+  const { currentChallenge } = useChallengeContext();
   const [code, setCode] = useState('');
   const [output, setOutput] = useState('');
   const [consoleLogs, setConsoleLogs] = useState([]);
@@ -21,7 +22,8 @@ function ChallengeApp() {
   };
 
   const handleSubmitCode = () => {
-    // Implement submission logic here
+    const testResults = runTestCases(currentChallenge.testCases, code);
+    setOutput(JSON.stringify(testResults, null, 2));
   };
 
   const handleResetCode = () => {

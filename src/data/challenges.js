@@ -1,4 +1,4 @@
-export const challenges = [
+const challenges = [
     {
       id: 1,
       name: "Reverse and Join",
@@ -196,3 +196,5 @@ export const challenges = [
     },
     // Add more challenges here...
   ];
+
+export default challenges;
